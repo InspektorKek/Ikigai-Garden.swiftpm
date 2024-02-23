@@ -15,7 +15,7 @@ let package = Package(
     products: [
         .iOSApplication(
             name: "Ikigai Garden",
-            targets: ["App"],
+            targets: ["AppModule"],
             bundleIdentifier: "com.mikhail.boriosv.Ikigai-Garden",
             teamIdentifier: "38BRD9SJV7",
             displayVersion: "1.0",
@@ -32,15 +32,16 @@ let package = Package(
                 .landscapeLeft,
                 .portraitUpsideDown(.when(deviceFamilies: [.pad]))
             ],
-            appCategory: .healthcareFitness,
-            additionalInfoPlistContentFilePath: "App/Info.plist"
+            capabilities: [
+                .camera(purposeString: "To enjoy the AR experience.")
+            ],
+            appCategory: .healthcareFitness
         )
     ],
     targets: [
         .executableTarget(
-            name: "App",
-            path: "App",
-            exclude: ["./Info.plist"],
+            name: "AppModule",
+            path: ".",
             resources: [
                 .process("Resources")
             ]
